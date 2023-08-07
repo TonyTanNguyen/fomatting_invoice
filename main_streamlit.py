@@ -32,18 +32,37 @@ def download_csv(df):
     b64 = base64.b64encode(csv.encode()).decode()
     href = f'<a href="data:file/csv;base64,{b64}" download="formatted.csv">Download Formatted CSV File</a>'
     st.markdown(href, unsafe_allow_html=True)
-
+def set_bg_hack_url():
+    '''
+    A function to unpack an image from url and set as bg.
+    Returns
+    -------
+    The background.
+    '''
+        
+    st.markdown(
+         f"""
+         <style>
+         .stApp {{
+             background: url("https://1159025897.rsc.cdn77.org/data/images/full/82178/johnny-depp.jpg");
+             background-size: cover
+         }}
+         </style>
+         """,
+         unsafe_allow_html=True
+     )
 def main():
     page_bg_img = '''
-<style>
-body {
-background-image: url("https://images.hellomagazine.com/horizon/landscape/47a19dab71aa-gettyimages-1255875965.jpg");
-background-size: cover;
-}
-</style>
-'''
+    <style>
+    body {
+    background-image: url("https://images.hellomagazine.com/horizon/landscape/47a19dab71aa-gettyimages-1255875965.jpg");
+    background-size: cover;
+    }
+    </style>
+    '''
 
 st.markdown(page_bg_img, unsafe_allow_html=True)
+    set_bg_hack_url()
     st.title("CSV Formatter for MR. Slawekdeppppppppppp")
 
     # Upload CSV file
