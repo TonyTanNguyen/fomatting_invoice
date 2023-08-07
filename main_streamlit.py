@@ -49,8 +49,7 @@ def set_bg_hack_url():
          }}
          </style>
          """,
-         unsafe_allow_html=True
-     )
+         unsafe_allow_html=True)
 def main():
     page_bg_img = '''
     <style>
