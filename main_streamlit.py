@@ -5,26 +5,26 @@ import base64
 def format_csv(df1,df_tp):
     # Perform some action to format the CSV file
     # For example, sort the dataframe by a specific column
-    df1['*ContactName'] = df_tp['Customer Name']
-    df1['EmailAddress'] = df_tp['Primary Contact EmailID']
-    df1['POAddressLine1'] = df_tp['Billing Address']
-    df1['POCity'] = df_tp['Billing City']
-    df1['POCountry'] = df_tp['Billing Country']
-    df1['*InvoiceNumber'] = df_tp['Invoice Number']
-    df1['Reference'] = df_tp['CF.TGM #']
-    df1['*InvoiceDate'] = df_tp['Invoice Date']
-    df1['*DueDate'] = df_tp['Expected Payment Date']
-    df1['Total'] = df_tp['Total']
-    df1['*Description'] = df_tp['Item Desc']
-    df1['*Quantity'] = df_tp['Quantity']
-    df1['*UnitAmount'] = df_tp['Item Price']
-    df1['Discount'] = df_tp['Discount']
-    df1['*AccountCode'] = df_tp['Account Code']
-    df1['*TaxType'] = df_tp['Item Tax Type']
-    df1['TaxAmount'] = 0
-    df1['Currency'] = df_tp['Currency Code']
+    df_tp['*ContactName'] = df1['Customer Name']
+    df_tp['EmailAddress'] = df1['Primary Contact EmailID']
+    df_tp['POAddressLine1'] = df1['Billing Address']
+    df_tp['POCity'] = df1['Billing City']
+    df_tp['POCountry'] = df1['Billing Country']
+    df_tp['*InvoiceNumber'] = df1['Invoice Number']
+    df_tp['Reference'] = df1['CF.TGM #']
+    df_tp['*InvoiceDate'] = df1['Invoice Date']
+    df_tp['*DueDate'] = df1['Expected Payment Date']
+    df_tp['Total'] = df1['Total']
+    df_tp['*Description'] = df1['Item Desc']
+    df_tp['*Quantity'] = df1['Quantity']
+    df_tp['*UnitAmount'] = df1['Item Price']
+    df_tp['Discount'] = df1['Discount']
+    df_tp['*AccountCode'] = df1['Account Code']
+    df_tp['*TaxType'] = df1['Item Tax Type']
+    df_tp['TaxAmount'] = 0
+    df_tp['Currency'] = df1['Currency Code']
 
-    return df1
+    return df_tp
 
 def download_csv(df):
     # Create a downloadable link for the formatted CSV
@@ -45,7 +45,6 @@ def main():
         template_df  = pd.read_csv(uploaded_template,header=0)
     if uploaded_file is not None:
         df_file = pd.read_csv(uploaded_file,header=0)
-
         # Format button
         if st.button("Format"):
             formatted_df = format_csv(df_file,template_df)
