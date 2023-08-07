@@ -34,8 +34,17 @@ def download_csv(df):
     st.markdown(href, unsafe_allow_html=True)
 
 def main():
+    page_bg_img = '''
+<style>
+body {
+background-image: url("https://images.hellomagazine.com/horizon/landscape/47a19dab71aa-gettyimages-1255875965.jpg");
+background-size: cover;
+}
+</style>
+'''
 
-    st.title("CSV Formatter")
+st.markdown(page_bg_img, unsafe_allow_html=True)
+    st.title("CSV Formatter for MR. Slawekdeppppppppppp")
 
     # Upload CSV file
     uploaded_file = st.file_uploader("Upload CSV file", type="csv")
