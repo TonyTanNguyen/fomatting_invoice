@@ -119,7 +119,7 @@ def main():
                 formatted_df = format_csv(df_file,template_df)
 
                 # Display the formatted dataframe
-                st.write(formatted_df)
+                st.write(formatted_df.head(10))
 
                 # Download formatted CSV button
                 download_csv(formatted_df)
