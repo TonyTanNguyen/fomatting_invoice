@@ -28,7 +28,7 @@ def format_csv(df1,df_tp):
     df_tp['Currency'] = df1['Currency Code']
 
     return df_tp
-
+    
 def format_excel(df):
     deal_created_count = 0
     deal_closed_count = 0
