@@ -103,7 +103,7 @@ def main():
     st.image('https://1159025897.rsc.cdn77.org/data/images/full/82178/johnny-depp.jpg',caption="I hadn't known Tan has been on my back over 1 year, so I was spending my life on those things manually.")
     
 
-    tab2,tab1 = st.tabs({"CSV Formatter",'Excel Date Formatter'})
+    tab1,tab2 = st.tabs({"CSV Formatter",'Excel Date Formatter'})
     with tab1:
         st.title("CSV Formatterrrr")
         # Upload CSV file
