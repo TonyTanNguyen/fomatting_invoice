@@ -30,7 +30,7 @@ def format_csv(df1,df_tp):
     return df_tp
 def format_csv_contact(df_old,df_new):
 
-    
+    df_new['*ContactName'] = df_old['Contact Name']
     df_new['EmailAddress'] = df_old['EmailID']
     df_new['FirstName'] = df_old['First Name']
     df_new['LastName'] = df_old['Last Name']
