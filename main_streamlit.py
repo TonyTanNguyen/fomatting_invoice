@@ -8,24 +8,77 @@ import io
 def format_csv(df1,df_tp):
     # Perform some action to format the CSV file
     # For example, sort the dataframe by a specific column
-    df_tp['*ContactName'] = df1['Customer Name']
-    df_tp['EmailAddress'] = df1['Primary Contact EmailID']
-    df_tp['POAddressLine1'] = df1['Billing Address']
-    df_tp['POCity'] = df1['Billing City']
-    df_tp['POCountry'] = df1['Billing Country']
-    df_tp['*InvoiceNumber'] = df1['Invoice Number']
-    df_tp['Reference'] = df1['CF.TGM #']
-    df_tp['*InvoiceDate'] = df1['Invoice Date']
-    df_tp['*DueDate'] = df1['Expected Payment Date']
-    df_tp['Total'] = df1['Total']
-    df_tp['*Description'] = df1['Item Desc']
-    df_tp['*Quantity'] = df1['Quantity']
-    df_tp['*UnitAmount'] = df1['Item Price']
-    df_tp['Discount'] = df1['Discount']
-    df_tp['*AccountCode'] = df1['Account Code']
-    df_tp['*TaxType'] = df1['Item Tax Type']
+    cols = df1.columns
+    if 'Customer Name' in cols:
+        df_tp['*ContactName'] = df1['Customer Name']
+    else:
+        st.write(f'Missing Customer Name')
+    if 'Primary Contact EmailID' in cols:
+        df_tp['EmailAddress'] = df1['Primary Contact EmailID']
+    else:
+        st.write(f'Missing Primary Contact EmailID')
+        
+    if 'Customer Name' in cols:
+        df_tp['Billing Address'] = df1['Billing Address']
+    else:
+        st.write(f'Missing Billing Address')
+    if 'Billing City' in cols:
+        df_tp['POCity'] = df1['Billing City']
+    else:
+        st.write(f'Missing Billing City')
+    if 'Billing Country' in cols:
+        df_tp['POCountry'] = df1['Billing Country']
+    else:
+        st.write(f'Missing Billing Country')
+    if 'Invoice Number' in cols:
+        df_tp['*InvoiceNumber'] = df1['Invoice Number']
+    else:
+        st.write(f'Missing Invoice Number')
+    if 'CF.TGM #' in cols:
+        df_tp['Reference'] = df1['CF.TGM #']
+    else:
+        st.write(f'Missing CF.TGM #')
+    if 'Invoice Date' in cols:
+        df_tp['*InvoiceDate'] = df1['Invoice Date']
+    else:
+        st.write(f'Missing Invoice Date')
+    if 'Expected Payment Date' in cols:
+        df_tp['*DueDate'] = df1['Expected Payment Date']
+    else:
+        st.write(f'Missing Expected Payment Date')
+    if 'Total' in cols:
+        df_tp['Total'] = df1['Total']
+    else:
+        st.write(f'Missing Total')
+    if 'Item Desc' in cols:
+        df_tp['*Description'] = df1['Item Desc']
+    else:
+        st.write(f'Missing Item Desc')
+    if 'Quantity' in cols:
+        df_tp['*Quantity'] = df1['Quantity']
+    else:
+        st.write(f'Missing Quantity')
+    if 'Item Price' in cols:
+        df_tp['*UnitAmount'] = df1['Item Price']
+    else:
+        st.write(f'Missing Item Price')
+    if 'Discount' in cols:
+        df_tp['Discount'] = df1['Discount']
+    else:
+        st.write(f'Missing Discount')
+    if 'Account Code' in cols:
+        df_tp['*AccountCode'] = df1['Account Code']
+    else:
+        st.write(f'Missing Account Code')
+    if 'Item Tax Type' in cols:
+        df_tp['*TaxType'] = df1['Item Tax Type']
+    else:
+        st.write(f'Missing Item Tax Type')
     df_tp['TaxAmount'] = 0
-    df_tp['Currency'] = df1['Currency Code']
+    if 'Currency Code' in cols:
+        df_tp['Currency'] = df1['Currency Code']
+    else:
+        st.write(f'Missing Currency Code')
     df_tp = df_tp.drop_duplicates(subset='*ContactName',keep="first")
     return df_tp
 def format_csv_contact(df_old,df_new):
