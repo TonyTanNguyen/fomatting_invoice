@@ -145,22 +145,22 @@ def main():
     with tab2:
         st.title("CSV Formatter - Contacts")
         # Upload CSV file
-        uploaded_file = st.file_uploader("Upload CSV file", type="csv")
-        uploaded_template = st.file_uploader("Upload CSV template file", type="csv")
+        uploaded_file2 = st.file_uploader("Upload CSV file", type="csv")
+        uploaded_template2 = st.file_uploader("Upload CSV template file", type="csv")
 
-        if uploaded_template is not None:
-            template_df  = pd.read_csv(uploaded_template,header=0)
-        if uploaded_file is not None:
-            df_file = pd.read_csv(uploaded_file,header=0)
+        if uploaded_template2 is not None:
+            template_df2  = pd.read_csv(uploaded_template2,header=0)
+        if uploaded_file2 is not None:
+            df_file2 = pd.read_csv(uploaded_file2,header=0)
             # Format button
             if st.button("Format"):
-                formatted_df = format_csv_contact(df_file,template_df)
+                formatted_df2 = format_csv_contact(df_file2,template_df2)
 
                 # Display the formatted dataframe
-                st.write(formatted_df)
+                st.write(formatted_df2)
 
                 # Download formatted CSV button
-                download_csv(formatted_df)
+                download_csv(formatted_df2)
     with tab3:
         st.title("Excel Date Formatter")
         uploaded_file1 = st.file_uploader("Upload Excel file", type="xlsx")
