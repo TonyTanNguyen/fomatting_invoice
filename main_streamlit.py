@@ -34,10 +34,10 @@ def format_csv(df1,df_tp):
         df_tp['*InvoiceNumber'] = df1['Invoice Number']
     else:
         st.write(f'Missing Invoice Number')
-    if 'CF.TGM #' in cols:
-        df_tp['Reference'] = df1['CF.TGM #']
+    if 'Reference' in cols:
+        df_tp['Reference'] = df1['Reference']
     else:
-        st.write(f'Missing CF.TGM #')
+        st.write(f'Missing Reference')
     if 'Invoice Date' in cols:
         df_tp['*InvoiceDate'] = df1['Invoice Date']
     else:
