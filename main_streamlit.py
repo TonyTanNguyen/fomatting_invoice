@@ -28,6 +28,25 @@ def format_csv(df1,df_tp):
     df_tp['Currency'] = df1['Currency Code']
 
     return df_tp
+def format_csv_contact(df_old,df_new):
+
+    
+    df_new['EmailAddress'] = df_old['EmailID']
+    df_new['FirstName'] = df_old['First Name']
+    df_new['LastName'] = df_old['Last Name']
+    df_new['POAttentionTo'] = df_old['Billing Attention']
+    df_new['POAddressLine1'] = df_old['Billing Address']
+    df_new['POAddressLine2'] = df_old['Billing Street2']
+    df_new['POCity'] = df_old['Billing City']
+    df_new['POPostalCode'] = df_old['Billing Code']
+    df_new['POCountry'] = df_old['Billing Country']
+    df_new['PhoneNumber'] = df_old['Billing Phone']
+    df_new['FaxNumber'] = df_old['Billing Fax']
+    df_new['MobileNumber'] = df_old['MobilePhone']
+    df_new['SkypeName'] = df_old['Skype Identity']
+    df_new['TaxNumber'] = df_old['Tax Percentage']
+
+    return df_tp
 
 def format_excel(df):
     deal_created_count = 0
@@ -103,7 +122,7 @@ def main():
     st.image('https://1159025897.rsc.cdn77.org/data/images/full/82178/johnny-depp.jpg',caption="I hadn't known Tan has been on my back over 1 year, so I was spending my life on those things manually.")
     
 
-    tab1,tab2 = st.tabs({"CSV Formatter",'Excel Date Formatter'})
+    tab1,tab2,tab3 = st.tabs({"CSV Formatter - Invoices","CSV Formatter - Contacts","Excel Date Formatter"})
     with tab1:
         st.title("CSV Formatterrrr")
         # Upload CSV file
@@ -124,6 +143,25 @@ def main():
                 # Download formatted CSV button
                 download_csv(formatted_df)
     with tab2:
+        st.title("CSV Formatter - Contacts")
+        # Upload CSV file
+        uploaded_file = st.file_uploader("Upload CSV file", type="csv")
+        uploaded_template = st.file_uploader("Upload CSV template file", type="csv")
+
+        if uploaded_template is not None:
+            template_df  = pd.read_csv(uploaded_template,header=0)
+        if uploaded_file is not None:
+            df_file = pd.read_csv(uploaded_file,header=0)
+            # Format button
+            if st.button("Format"):
+                formatted_df = format_csv_contact(df_file,template_df)
+
+                # Display the formatted dataframe
+                st.write(formatted_df)
+
+                # Download formatted CSV button
+                download_csv(formatted_df)
+    with tab3:
         st.title("Excel Date Formatter")
         uploaded_file1 = st.file_uploader("Upload Excel file", type="xlsx")
         if uploaded_file1 is not None:
