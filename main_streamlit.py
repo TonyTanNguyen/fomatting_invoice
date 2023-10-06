@@ -26,7 +26,7 @@ def format_csv(df1,df_tp):
     df_tp['*TaxType'] = df1['Item Tax Type']
     df_tp['TaxAmount'] = 0
     df_tp['Currency'] = df1['Currency Code']
-
+    df_tp = df_tp.drop_duplicates(keep="first")
     return df_tp
 def format_csv_contact(df_old,df_new):
 
@@ -45,7 +45,7 @@ def format_csv_contact(df_old,df_new):
     df_new['MobileNumber'] = df_old['MobilePhone']
     df_new['SkypeName'] = df_old['Skype Identity']
     df_new['TaxNumber'] = df_old['Tax Percentage']
-
+    df_new = df_new.drop_duplicates(keep="first")
     return df_new
 
 def format_excel(df):
