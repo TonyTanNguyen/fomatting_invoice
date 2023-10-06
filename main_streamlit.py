@@ -126,8 +126,8 @@ def main():
     with tab1:
         st.title("CSV Format - Invoices")
         # Upload CSV file
-        uploaded_file = st.file_uploader("Upload CSV file", type="csv")
-        uploaded_template = st.file_uploader("Upload CSV template file", type="csv")
+        uploaded_file = st.file_uploader("Upload CSV - invoice file", type="csv")
+        uploaded_template = st.file_uploader("Upload CSV template - invoice file", type="csv")
 
         if uploaded_template is not None:
             template_df  = pd.read_csv(uploaded_template,header=0)
@@ -145,8 +145,8 @@ def main():
     with tab2:
         st.title("CSV Formatter - Contacts")
         # Upload CSV file
-        uploaded_file2 = st.file_uploader("Upload CSV file", type="csv")
-        uploaded_template2 = st.file_uploader("Upload CSV template file", type="csv")
+        uploaded_file2 = st.file_uploader("Upload CSV file - contact", type="csv")
+        uploaded_template2 = st.file_uploader("Upload CSV template - contact file", type="csv")
 
         if uploaded_template2 is not None:
             template_df2  = pd.read_csv(uploaded_template2,header=0)
