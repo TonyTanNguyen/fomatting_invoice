@@ -128,7 +128,7 @@ def format_excel(df):
 
 def download_csv(df):
     # Create a downloadable link for the formatted CSV
-    csv = df.to_csv(index=False,sep='\t')
+    csv = df.to_csv(index=False)
     b64 = base64.b64encode(csv.encode()).decode()
     href = f'<a href="data:file/csv;base64,{b64}" download="formatted.csv">Download Formatted CSV File</a>'
     st.markdown(href, unsafe_allow_html=True)
