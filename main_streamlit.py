@@ -79,12 +79,12 @@ def format_csv(df1,df_tp):
         df_tp['Currency'] = df1['Currency Code']
     else:
         st.write(f'Missing Currency Code')
-    indexes = df_tp[df_tp['*InvoiceNumber'].duplicated()].index
-    count=0
-    for i in indexes:
-        new_text = str(df_tp['*InvoiceNumber'][i])+ '-'+ str(count)
-        df_tp.at[i,'*InvoiceNumber'] = new_text
-        count+=1
+    # indexes = df_tp[df_tp['*InvoiceNumber'].duplicated()].index
+    # count=0
+    # for i in indexes:
+    #     new_text = str(df_tp['*InvoiceNumber'][i])+ '-'+ str(count)
+    #     df_tp.at[i,'*InvoiceNumber'] = new_text
+    #     count+=1
     
     return df_tp
 def format_csv_contact(df_old,df_new):
