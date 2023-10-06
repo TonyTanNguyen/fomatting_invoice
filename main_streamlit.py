@@ -79,7 +79,7 @@ def format_csv(df1,df_tp):
         df_tp['Currency'] = df1['Currency Code']
     else:
         st.write(f'Missing Currency Code')
-    df_tp = df_tp.drop_duplicates(subset='*ContactName',keep="first")
+    # df_tp = df_tp.drop_duplicates(subset='*ContactName',keep="first")
     return df_tp
 def format_csv_contact(df_old,df_new):
 
