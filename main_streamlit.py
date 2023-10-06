@@ -46,7 +46,7 @@ def format_csv_contact(df_old,df_new):
     df_new['SkypeName'] = df_old['Skype Identity']
     df_new['TaxNumber'] = df_old['Tax Percentage']
 
-    return df_tp
+    return df_new
 
 def format_excel(df):
     deal_created_count = 0
