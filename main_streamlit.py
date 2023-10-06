@@ -124,7 +124,7 @@ def main():
 
     tab1,tab2,tab3 = st.tabs({"CSV Formatter - Invoices","CSV Formatter - Contacts","Excel Date Formatter"})
     with tab1:
-        st.title("CSV Formatterrrr")
+        st.title("CSV Format - Invoices")
         # Upload CSV file
         uploaded_file = st.file_uploader("Upload CSV file", type="csv")
         uploaded_template = st.file_uploader("Upload CSV template file", type="csv")
