@@ -82,7 +82,7 @@ def format_csv(df1,df_tp):
     indexes = df_tp[df_tp['*InvoiceNumber'].duplicated()].index
     count=0
     for i in indexes:
-        new_text = str(df_tp['*InvoiceNumber'][i])+ '_'+ str(count)
+        new_text = str(df_tp['*InvoiceNumber'][i])+ '-'+ str(count)
         df_tp.at[i,'*InvoiceNumber'] = new_text
         count+=1
     
