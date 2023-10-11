@@ -13,6 +13,10 @@ def format_csv(df1,df_tp):
         df_tp['*ContactName'] = df1['Customer Name']
     else:
         st.write(f'Missing Customer Name')
+    if 'PO Number' in cols:
+        df_tp['InventoryItemCode'] = df1['PO Number']
+    else:
+        st.write(f'Missing PO Number')
     if 'Primary Contact EmailID' in cols:
         df_tp['EmailAddress'] = df1['Primary Contact EmailID']
     else:
