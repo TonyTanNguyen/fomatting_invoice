@@ -182,7 +182,7 @@ def set_bg_hack_url():
      )
 def main():
     # set_bg_hack_url()
-    st.image('https://vcdn1-giaitri.vnecdn.net/2023/05/18/deppcannes-1684376950-16843769-7808-2139-1684377768.jpg?w=500&h=300&q=100&dpr=2&fit=crop&s=LLzHRXv7WX6Rw8c-5je0Lg',caption="THANK YOU FOR YOUR SERVICE MR TAN")
+    st.image('https://vcdn1-giaitri.vnecdn.net/2023/05/18/deppcannes-1684376950-16843769-7808-2139-1684377768.jpg?w=500&h=300&q=100&dpr=2&fit=crop&s=LLzHRXv7WX6Rw8c-5je0Lg',caption="THANK YOU FOR YOUR SERVICE MR TAN",font-size = '100%')
     
 
     tab1,tab2,tab3 = st.tabs(["CSV Formatter - Invoices","CSV Formatter - Contacts","Excel Date Formatter"])
