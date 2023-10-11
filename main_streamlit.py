@@ -173,7 +173,7 @@ def set_bg_hack_url():
          f"""
          <style>
          .stApp {{
-             background: url("https://1159025897.rsc.cdn77.org/data/images/full/82178/johnny-depp.jpg");
+             background: url("https://vcdn1-giaitri.vnecdn.net/2023/05/18/deppcannes-1684376950-16843769-7808-2139-1684377768.jpg?w=500&h=300&q=100&dpr=2&fit=crop&s=LLzHRXv7WX6Rw8c-5je0Lg");
              background-size: cover
          }}
          </style>
@@ -182,7 +182,7 @@ def set_bg_hack_url():
      )
 def main():
     # set_bg_hack_url()
-    st.image('https://1159025897.rsc.cdn77.org/data/images/full/82178/johnny-depp.jpg',caption="I hadn't known Tan has been on my back over 1 year, so I was spending my life on those things manually.")
+    st.image('https://vcdn1-giaitri.vnecdn.net/2023/05/18/deppcannes-1684376950-16843769-7808-2139-1684377768.jpg?w=500&h=300&q=100&dpr=2&fit=crop&s=LLzHRXv7WX6Rw8c-5je0Lg',caption="THANK YOU FOR YOUR SERVICE MR TAN")
     
 
     tab1,tab2,tab3 = st.tabs(["CSV Formatter - Invoices","CSV Formatter - Contacts","Excel Date Formatter"])
