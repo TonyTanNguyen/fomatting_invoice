@@ -56,7 +56,7 @@ def format_csv(df1,df_tp):
     else:
         st.write(f'Missing Total')
     if 'Item Desc' in cols:
-        # df_tp['*Description'] = df1.apply(lambda x: x['Item Desc'] + 'Purchase Order: ' + str(x['PO Number']) if x['PO Number'] not in ['',np.nan] else x['Item Desc'],axis=1)
+        df_tp['*Description'] = df1.apply(lambda x: x['Item Desc'] + 'Purchase Order: ' + str(x['PO Number']) if x['PO Number'] not in ['',np.nan] else x['Item Desc'],axis=1)
         # df_tp['*Description'] = df1['Item Desc'] + '\nPurchase Order: ' + df1['PO Number']
     else:
         st.write(f'Missing Item Desc')
