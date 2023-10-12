@@ -44,7 +44,7 @@ def format_csv(df1,df_tp):
     else:
         st.write(f'Missing Reference')
     if 'Invoice Date' in cols:
-        df_tp['*InvoiceDate'] = df1.apply(lambda x: '# ' + x['Invoice Date'] if '#' not in x['Invoice Date'] else x['Invoice Date'])
+        df_tp['*InvoiceDate'] = df1.apply(lambda x: '# ' + x['Invoice Date'] if '#' not in x['Invoice Date'] else x['Invoice Date'], axis=1)
         df_tp['*InvoiceDate'] = df1['Invoice Date']
     else:
         st.write(f'Missing Invoice Date')
