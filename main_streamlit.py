@@ -56,7 +56,7 @@ def format_csv(df1,df_tp):
         st.write(f'Missing Total')
     if 'Item Desc' in cols:
         df_tp['*Description'] = df1['Item Desc']
-        df_tp['*Description'] = df_tp['*Description'] + '\nPurchase Order: ' + df_tp['InventoryItemCode']
+        df_tp['*Description'] = df_tp['*Description'] + '\nPurchase Order: ' + df1['PO Number']
     else:
         st.write(f'Missing Item Desc')
     if 'Quantity' in cols:
