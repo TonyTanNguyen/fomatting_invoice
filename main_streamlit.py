@@ -4,6 +4,7 @@ import base64
 import datetime
 import re
 import io
+import numpy as np
 
 def format_csv(df1,df_tp):
     # Perform some action to format the CSV file
