@@ -258,7 +258,7 @@ def main():
     
         if uploaded_excel is not None:
             excel  = pd.read_excel(uploaded_excel,header=0,sheet_name='Sheet1')
-            if "Sheet1" not in excel.columns:
+            if "Sheet1" is not in excel.columns:
                 st.write('Please put data into sheet name "Sheet1" and try again.')
         if sql_file is not None:
             # with open(sql_file,'r') as file:
