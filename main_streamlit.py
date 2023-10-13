@@ -36,8 +36,8 @@ def format_csv(df1,df_tp):
     else:
         st.write(f'Missing Billing Country')
     if 'Invoice Number' in cols:
-        df_tp['*InvoiceNumber'] = df1.apply(lambda x: '# ' + x['Invoice Number'] if '#' not in x['Invoice Number'] else x['Invoice Number'], axis=1)
-        # df_tp['*InvoiceNumber'] = df1['Invoice Number']
+        # df_tp['*InvoiceNumber'] = df1.apply(lambda x: '# ' + x['Invoice Number'] if '#' not in x['Invoice Number'] else x['Invoice Number'], axis=1)
+        df_tp['*InvoiceNumber'] = df1['Invoice Number']
     else:
         st.write(f'Missing Invoice Number')
     if 'CF.TGM #' in cols:
