@@ -206,7 +206,7 @@ def main():
                 formatted_df = format_csv(df_file,template_df)
 
                 # Display the formatted dataframe
-                st.dataframe(formatted_df)
+                st.data_editor(formatted_df)
 
                 # Download formatted CSV button
                 download_csv(formatted_df)
@@ -225,7 +225,7 @@ def main():
                 formatted_df2 = format_csv_contact(df_file2,template_df2)
 
                 # Display the formatted dataframe
-                st.dataframe(formatted_df2)
+                st.data_editor(formatted_df2)
 
                 # Download formatted CSV button
                 download_csv(formatted_df2)
