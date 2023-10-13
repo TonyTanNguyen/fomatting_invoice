@@ -5,7 +5,15 @@ import datetime
 import re
 import io
 import numpy as np
+import time
 
+def download_file(sql_file):
+    return st.download_button(
+        label="DOWNLOAD!",
+        data=sql_file,
+        file_name=sql_file.name.replace('.sql','_replaced.sql'),
+        mime="text/plain"
+        )
 def format_csv(df1,df_tp):
     # Perform some action to format the CSV file
     # For example, sort the dataframe by a specific column
@@ -190,7 +198,7 @@ def main():
     st.image('https://vcdn1-giaitri.vnecdn.net/2023/05/18/deppcannes-1684376950-16843769-7808-2139-1684377768.jpg?w=500&h=300&q=100&dpr=2&fit=crop&s=LLzHRXv7WX6Rw8c-5je0Lg',caption="THANK YOU FOR YOUR SERVICE MR TAN")
     
 
-    tab1,tab2,tab3 = st.tabs(["CSV Formatter - Invoices","CSV Formatter - Contacts","Excel Date Formatter"])
+    tab1,tab2,tab3,tab4 = st.tabs(["CSV Formatter - Invoices","CSV Formatter - Contacts","Excel Date Formatter","DB Replacer"])
     with tab1:
         st.title("CSV Format - Invoicessssssss")
         # Upload CSV file
@@ -242,5 +250,52 @@ def main():
 
                 # Download formatted CSV button
                 download_excel(formatted_df1)
+    with tab4:
+        st.title("DB Replacer")
+        # Upload CSV file
+        sql_file = st.file_uploader("Upload DB file", type="sql")
+        uploaded_excel = st.file_uploader("Upload excel data", type="xlsx")
+    
+        if uploaded_excel is not None:
+            excel  = pd.read_excel(uploaded_excel,header=0,sheet_name='Sheet1')
+        if sql_file is not None:
+            # with open(sql_file,'r') as file:
+            sql_str = sql_file.read().decode('utf-8')
+                # Format button
+        if st.button("Format"):
+    
+            start_time = time.time()
+            new_excel = pd.melt(excel,id_vars = 'Alias',var_name='Find',value_name='Replace')
+            new_excel['Alias'] = new_excel['Alias'].str.lower().str.replace('(','').str.replace(')','').str.replace(' ','-')
+            new_excel = new_excel.sort_values("Alias")
+            df = new_excel.copy()
+            df = df.reset_index(drop=True)
+            df_report = df.copy()
+            df_report['Status'] = ''
+            for index, row in df.iterrows():
+                find = str(row['Find']).strip()
+                replace = str(row['Replace']).replace('percent','%').strip()
+                replace = replace.replace("'",r"\'").replace("\n","").replace("\r","")
+        #         replace = replace.replace("'",r"\'").replace("/",r"\/").replace("/",r"\/").replace("\n","").replace("\r","")
+                if find == 'abc,def' and not replace  == '-':
+                    replace = f'{int(replace):,}'
+                dump = find.replace('$','\$').replace('(','\(').replace(')','\)').replace('\\', r'\\').replace('\/', r'/')
+                alias = row['Alias'].strip()
+                if index%100==0:
+                    st.write(f'{index}/{len(df)}')
+        #         for i in range(2):
+                result = re.subn(fr"(?<={alias}).+{dump}(?=[^a-zA-Z])",lambda x: x.group().replace(find,replace),sql_str)
+                if not result[1]==0:
+                    
+                    sql_str = result[0]
+                    df_report.at[index,'Status'] = 'Sucess'
+                else:
+                    df_report.at[index,'Status'] = 'Counld not find'
+            st.write("--- %s minutes ---" % ((time.time() - start_time)/60))
+            with open(os.path.join("/tmp", sql_file.name), "w") as f:
+                f.write(sql_str)
+            # sql_file.write(sql_str)
+            # Download formatted CSV button
+            download_file(sql_file)
 if __name__ == '__main__':
     main()
