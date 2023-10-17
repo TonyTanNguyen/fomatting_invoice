@@ -266,7 +266,8 @@ def main():
             sql_str = sql_file.read().decode('utf-8')
                 # Format button
             if st.button("Format"):
-        
+                progress_text = "Replacing is in progress. Please wait."
+                my_bar = st.progress(0, text=progress_text)
                 start_time = time.time()
                 new_excel = pd.melt(excel,id_vars = 'Alias',var_name='Find',value_name='Replace')
                 new_excel['Alias'] = new_excel['Alias'].str.lower().str.replace('(','').str.replace(')','').str.replace(' ','-')
@@ -276,6 +277,8 @@ def main():
                 df_report = df.copy()
                 df_report['Status'] = ''
                 for index, row in df.iterrows():
+                    my_bar.progress(index + 1, text=progress_text)
+                    
                     find = str(row['Find']).strip()
                     replace = str(row['Replace']).replace('percent','%').strip()
                     replace = replace.replace("'",r"\'").replace("\n","").replace("\r","")
@@ -294,6 +297,7 @@ def main():
                         df_report.at[index,'Status'] = 'Sucess'
                     else:
                         df_report.at[index,'Status'] = 'Counld not find'
+                my_bar.empty()
                 st.write("--- %s minutes ---" % ((time.time() - start_time)/60))
                 with open(os.path.join("/tmp", sql_file.name), "w") as f:
                     f.write(sql_str)
