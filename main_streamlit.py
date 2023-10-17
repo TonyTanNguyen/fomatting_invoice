@@ -276,6 +276,7 @@ def main():
                 df = df.reset_index(drop=True)
                 df_report = df.copy()
                 df_report['Status'] = ''
+                status_text = st.empty()
                 for index, row in df.iterrows():
                     time.sleep(0.01)
                     my_bar.progress((index+1)/len(df), text=progress_text)
@@ -288,8 +289,8 @@ def main():
                         replace = f'{int(replace):,}'
                     dump = find.replace('$','\$').replace('(','\(').replace(')','\)').replace('\\', r'\\').replace('\/', r'/')
                     alias = row['Alias'].strip()
-                    if index%100==0:
-                        st.write(f'{index}/{len(df)}')
+                    # if index%100==0:
+                    status_text.write(f'{index}/{len(df)}')
             #         for i in range(2):
                     result = re.subn(fr"(?<={alias}).+{dump}(?=[^a-zA-Z])",lambda x: x.group().replace(find,replace),sql_str)
                     if not result[1]==0:
@@ -306,5 +307,10 @@ def main():
                 # sql_file.write(sql_str)
                 # Download formatted CSV button
                 download_file(sql_file)
+                display_missing_df = df_report[df_report['Status']=='Counld not find']
+                st.write(f'Report: {len(display_missing_df)} Could not find')
+                st.dataframe(display_missing_df)
+                st.write('Download Report:')
+                download_excel(df_report)
 if __name__ == '__main__':
     main()
