@@ -277,6 +277,7 @@ def main():
                 df_report = df.copy()
                 df_report['Status'] = ''
                 for index, row in df.iterrows():
+                    time.sleep(0.01)
                     my_bar.progress(index + 1, text=progress_text)
                     
                     find = str(row['Find']).strip()
@@ -297,6 +298,7 @@ def main():
                         df_report.at[index,'Status'] = 'Sucess'
                     else:
                         df_report.at[index,'Status'] = 'Counld not find'
+                time.sleep(1)
                 my_bar.empty()
                 st.write("--- %s minutes ---" % ((time.time() - start_time)/60))
                 with open(os.path.join("/tmp", sql_file.name), "w") as f:
