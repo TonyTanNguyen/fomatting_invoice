@@ -290,7 +290,7 @@ def main():
                     dump = find.replace('$','\$').replace('(','\(').replace(')','\)').replace('\\', r'\\').replace('\/', r'/')
                     alias = row['Alias'].strip()
                     # if index%100==0:
-                    status_text.write(f'{index}/{len(df)}')
+                    status_text.write(f'{index+1}/{len(df)}')
             #         for i in range(2):
                     result = re.subn(fr"(?<={alias}).+{dump}(?=[^a-zA-Z])",lambda x: x.group().replace(find,replace),sql_str)
                     if not result[1]==0:
