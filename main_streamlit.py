@@ -278,7 +278,7 @@ def main():
                 df_report['Status'] = ''
                 status_text = st.empty()
                 for index, row in df.iterrows():
-                    time.sleep(0.01)
+                    time.sleep(0.05)
                     my_bar.progress((index+1)/len(df), text=progress_text)
                     
                     find = str(row['Find']).strip()
