@@ -267,7 +267,7 @@ def main():
                 # Format button
             if st.button("Format"):
                 progress_text = "Replacing is in progress. Please wait."
-                my_bar = st.progress(0, text=progress_text)
+                my_bar = st.progress(0.0, text=progress_text)
                 start_time = time.time()
                 new_excel = pd.melt(excel,id_vars = 'Alias',var_name='Find',value_name='Replace')
                 new_excel['Alias'] = new_excel['Alias'].str.lower().str.replace('(','').str.replace(')','').str.replace(' ','-')
@@ -278,7 +278,7 @@ def main():
                 df_report['Status'] = ''
                 for index, row in df.iterrows():
                     time.sleep(0.01)
-                    my_bar.progress(index + 1, text=progress_text)
+                    my_bar.progress((index+1)/len(df), text=progress_text)
                     
                     find = str(row['Find']).strip()
                     replace = str(row['Replace']).replace('percent','%').strip()
