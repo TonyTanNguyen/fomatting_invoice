@@ -17,8 +17,10 @@ from selenium.webdriver.support.ui import Select
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.keys import Keys
-
-
+from webdriver_manager.chrome import ChromeDriverManager
+@st.experimental_singleton
+def get_driver():
+    return webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
 def download_file(sql_file):
     return st.download_button(
         label="DOWNLOAD!",
@@ -335,11 +337,13 @@ def main():
         if input1 and input2:
             if st.button("Run"):
                 alert = st.empty()
+                
                 service = Service()
                 options = webdriver.ChromeOptions()
                 options.add_argument('--disable-gpu')
                 options.add_argument('--headless')
-                browser = webdriver.Chrome(service=service, options=options)
+                # browser = webdriver.Chrome(service=service, options=options)
+                browser = get_driver()
 
                 alert.write('Trying to login....')
                 #open the LinkedIn login page and login under a specified account:
