@@ -352,7 +352,7 @@ def main():
                 # options.add_argument("disable-infobars")
                 # options.add_argument("--disable-extensions")
                 # options.add_argument("--disable-dev-shm-usage")
-                # options = Options()
+                options = Options()
                 options.add_argument('--disable-gpu')
                 options.add_argument('--headless')
                 
