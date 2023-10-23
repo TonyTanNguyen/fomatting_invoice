@@ -343,7 +343,7 @@ def main():
                 
                     @st.cache_resource
                     def get_driver():
-                        return webdriver.Chrome(service=Service(ChromeDriverManager().install()),options=options)
+                        return webdriver.Chrome(service=Service(),options=options)
                         
                 
                     options = Options()
