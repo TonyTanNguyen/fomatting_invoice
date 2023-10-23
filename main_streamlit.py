@@ -19,8 +19,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.keys import Keys
 from webdriver_manager.chrome import ChromeDriverManager
 @st.experimental_singleton
-def get_driver():
-    return webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
+
 def download_file(sql_file):
     return st.download_button(
         label="DOWNLOAD!",
@@ -340,6 +339,15 @@ def main():
                 
                 service = Service()
                 options = webdriver.ChromeOptions()
+                # options = Options()
+                options.add_argument("--headless")
+                options.add_argument("--no-sandbox")
+                options.add_argument("--disable-dev-shm-usage")
+                options.add_argument("--disable-gpu")
+                options.add_argument("--disable-features=NetworkService")
+                options.add_argument("--window-size=1920x1080")
+                options.add_argument("--disable-features=VizDisplayCompositor")
+                
                 options.add_argument('--disable-gpu')
                 options.add_argument('--headless')
                 # browser = webdriver.Chrome(service=service, options=options)
