@@ -337,6 +337,7 @@ def main():
                 alert = st.empty()
                 service = Service()
                 options = webdriver.ChromeOptions()
+                options.headless = True
                 browser = webdriver.Chrome(service=service, options=options)
 
                 alert.write('Trying to login....')
