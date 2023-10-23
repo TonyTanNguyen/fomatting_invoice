@@ -350,7 +350,7 @@ def main():
                     options.add_argument('--disable-gpu')
                     options.add_argument('--headless')
                 
-                    driver = webdriver.Chrome(service=Service(),options=options)
+                    driver = webdriver.Chrome(service=service, options=options)
                     driver.get("http://example.com")
                 
                     st.code(driver.page_source)
