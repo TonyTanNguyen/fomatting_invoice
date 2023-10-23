@@ -336,23 +336,23 @@ def main():
         if input1 and input2:
             if st.button("Run"):
                 with st.echo():
-                from selenium import webdriver
-                from selenium.webdriver.chrome.options import Options
-                from selenium.webdriver.chrome.service import Service
-                from webdriver_manager.chrome import ChromeDriverManager
-            
-                @st.experimental_singleton
-                def get_driver():
-                    return webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
-            
-                options = Options()
-                options.add_argument('--disable-gpu')
-                options.add_argument('--headless')
-            
-                driver = get_driver()
-                driver.get("http://example.com")
-            
-                st.code(driver.page_source)
+                    from selenium import webdriver
+                    from selenium.webdriver.chrome.options import Options
+                    from selenium.webdriver.chrome.service import Service
+                    from webdriver_manager.chrome import ChromeDriverManager
+                
+                    @st.experimental_singleton
+                    def get_driver():
+                        return webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
+                
+                    options = Options()
+                    options.add_argument('--disable-gpu')
+                    options.add_argument('--headless')
+                
+                    driver = get_driver()
+                    driver.get("http://example.com")
+                
+                    st.code(driver.page_source)
 
 if __name__ == '__main__':
     main()
