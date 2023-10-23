@@ -343,7 +343,7 @@ def main():
                 
                     @st.cache_resource
                     def get_driver():
-                        return webdriver.Chrome(ChromeDriverManager().install(), options=options)
+                        return webdriver.Chrome(options=options)
                 
                     options = Options()
                     options.add_argument('--disable-gpu')
