@@ -23,7 +23,7 @@ from selenium.webdriver.chrome.service import Service
 
 @st.experimental_singleton
 def get_driver():
-    return webdriver.Chrome(service=Service(),options=options)
+    return webdriver.Chrome(service=Service(ChromeDriverManager().install()),options=options)
 def download_file(sql_file):
     return st.download_button(
         label="DOWNLOAD!",
@@ -353,8 +353,8 @@ def main():
                 options.add_argument("--disable-extensions")
                 options.add_argument("--disable-dev-shm-usage")
                 
-                service = Service()
-                browser = webdriver.Chrome(service=service, options=options)
+                
+                browser = get_driver()
                 
                 st.write('Trying to login....')
                 #open the LinkedIn login page and login under a specified account:
