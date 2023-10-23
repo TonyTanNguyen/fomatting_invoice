@@ -350,8 +350,8 @@ def main():
                 
                 options.add_argument('--disable-gpu')
                 options.add_argument('--headless')
-                # browser = webdriver.Chrome(service=service, options=options)
-                browser = get_driver()
+                browser = webdriver.Chrome(service=service, options=options)
+                # browser = get_driver()
 
                 alert.write('Trying to login....')
                 #open the LinkedIn login page and login under a specified account:
