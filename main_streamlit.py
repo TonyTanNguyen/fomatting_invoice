@@ -339,17 +339,16 @@ def main():
             type = 'password')
         if input1 and input2:
             if st.button("Run"):
-                alert = st.empty()
 
                     
             
                 options = Options()
-                options.add_argument('--disable-gpu')
+                # options.add_argument('--disable-gpu')
                 options.add_argument('--headless')
                 service = Service()
                 browser = webdriver.Chrome(service=service, options=options)
                 
-                alert.write('Trying to login....')
+                st.write('Trying to login....')
                 #open the LinkedIn login page and login under a specified account:
                 browser.get('https://www.linkedin.com/login')
                 #enter the specified information to login to LinkedIn:
@@ -365,9 +364,9 @@ def main():
                     check = WebDriverWait(browser, 15).until(EC.element_to_be_clickable((By.XPATH, "//button[contains(@class, 'artdeco-button artdeco-button--muted artdeco-button--4 artdeco-button--tertiary ember-view share-box-feed-entry__trigger')]//*[contains(., 'Start a post')]")))
                     alert.write('Login Sucess, preparing post')
                 except:
-                    alert.write('Username or password was wrong. Quiting...')
+                    st.write('Username or password was wrong. Quiting...')
                     time.sleep(2)
-                alert.write('Quit automation. Good bye')
+                st.write('Quit automation. Good bye')
 
 if __name__ == '__main__':
     main()
