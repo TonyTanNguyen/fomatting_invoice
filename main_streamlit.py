@@ -22,8 +22,8 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
 
 @st.cache_resource
-def get_driver():
-    return webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
+# def get_driver():
+#     return webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
 def download_file(sql_file):
     return st.download_button(
         label="DOWNLOAD!",
@@ -342,21 +342,22 @@ def main():
 
                     
             
-                # options = Options()
-                # options.add_argument('--disable-gpu')
-                # options.add_argument('--headless')
-                # options.add_argument('--no-sandbox')
-                # options.add_argument("window-size=1920,1080")
-                # options.add_argument('--disable-dev-shm-usage')
-                # options.add_argument('--headless')
-                # options.add_argument("disable-infobars")
-                # options.add_argument("--disable-extensions")
-                # options.add_argument("--disable-dev-shm-usage")
                 options = Options()
                 options.add_argument('--disable-gpu')
                 options.add_argument('--headless')
+                options.add_argument('--no-sandbox')
+                options.add_argument("window-size=1920,1080")
+                options.add_argument('--disable-dev-shm-usage')
+                options.add_argument('--headless')
+                options.add_argument("disable-infobars")
+                options.add_argument("--disable-extensions")
+                options.add_argument("--disable-dev-shm-usage")
+                # options = Options()
+                # options.add_argument('--disable-gpu')
+                # options.add_argument('--headless')
                 
-                browser = get_driver()
+                # browser = get_driver()
+                browser = webdriver.Chrome(service=service, options=options)
                 
                 st.write('Trying to login....')
                 #open the LinkedIn login page and login under a specified account:
