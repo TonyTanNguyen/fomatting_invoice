@@ -18,8 +18,9 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.keys import Keys
 from webdriver_manager.chrome import ChromeDriverManager
-@st.experimental_singleton
-
+@st.experimental_memo(show_spinner=False,suppress_st_warning=True)
+def get_driver():
+    return webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
 def download_file(sql_file):
     return st.download_button(
         label="DOWNLOAD!",
@@ -338,8 +339,8 @@ def main():
                 alert = st.empty()
                 
                 service = Service()
-                options = webdriver.ChromeOptions()
-                # options = Options()
+                # options = webdriver.ChromeOptions()
+                options = Options()
                 options.add_argument("--headless")
                 options.add_argument("--no-sandbox")
                 options.add_argument("--disable-dev-shm-usage")
@@ -350,8 +351,8 @@ def main():
                 
                 options.add_argument('--disable-gpu')
                 options.add_argument('--headless')
-                browser = webdriver.Chrome(service=service, options=options)
-                # browser = get_driver()
+                # browser = webdriver.Chrome(service=service, options=options)
+                browser = get_driver()
 
                 alert.write('Trying to login....')
                 #open the LinkedIn login page and login under a specified account:
