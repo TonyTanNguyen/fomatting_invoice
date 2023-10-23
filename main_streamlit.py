@@ -362,7 +362,7 @@ def main():
                 time.sleep(5)
                 try:
                     st.write('Fiding xPath...')
-                    check = WebDriverWait(browser, 5).until(EC.element_to_be_clickable((By.XPATH, "//button[contains(@class, 'artdeco-button artdeco-button--muted artdeco-button--4 artdeco-button--tertiary ember-view share-box-feed-entry__trigger')]//*[contains(., 'Start a post')]")))
+                    check = WebDriverWait(browser, 15).until(EC.element_to_be_clickable((By.XPATH, "//button[contains(@class, 'artdeco-button artdeco-button--muted artdeco-button--4 artdeco-button--tertiary ember-view share-box-feed-entry__trigger')]//*[contains(., 'Start a post')]")))
                     alert.write('Login Sucess, preparing post')
                 except:
                     alert.write('Username or password was wrong. Quiting...')
