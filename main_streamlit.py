@@ -359,6 +359,7 @@ def main():
                 st.write('Trying to login....')
                 #open the LinkedIn login page and login under a specified account:
                 browser.get('https://www.linkedin.com/login')
+                browser.set_window_size(1920, 1080)
                 #enter the specified information to login to LinkedIn:
                 elementID = browser.find_element(By.ID,'username')
                 elementID.send_keys(input1)
