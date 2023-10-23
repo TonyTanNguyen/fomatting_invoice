@@ -21,7 +21,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
 
-@st.cache_resource
+@st.experimental_singleton
 def get_driver():
     return webdriver.Chrome(service=Service(),options=options)
 def download_file(sql_file):
