@@ -7,6 +7,18 @@ import io
 import numpy as np
 import time
 import os
+import csv
+
+
+from selenium.webdriver.chrome.service import Service
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import Select
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.keys import Keys
+
+
 def download_file(sql_file):
     return st.download_button(
         label="DOWNLOAD!",
@@ -198,7 +210,7 @@ def main():
     st.image('https://vcdn1-giaitri.vnecdn.net/2023/05/18/deppcannes-1684376950-16843769-7808-2139-1684377768.jpg?w=500&h=300&q=100&dpr=2&fit=crop&s=LLzHRXv7WX6Rw8c-5je0Lg',caption="THANK YOU FOR YOUR SERVICE MR TAN")
     
 
-    tab1,tab2,tab3,tab4 = st.tabs(["CSV Formatter - Invoices","CSV Formatter - Contacts","Excel Date Formatter","DB Replacer"])
+    tab1,tab2,tab3,tab4,tab5 = st.tabs(["CSV Formatter - Invoices","CSV Formatter - Contacts","Excel Date Formatter","DB Replacer","Linkedin Auto Post"])
     with tab1:
         st.title("CSV Format - Invoicessssssss")
         # Upload CSV file
@@ -312,5 +324,39 @@ def main():
                 st.dataframe(display_missing_df)
                 st.write('Download Report:')
                 download_excel(df_report)
+    with tab5:
+        input1 = st.text_input('Linkedin username',
+            label_visibility='hidden',
+            placeholder='Please input username')
+        input2 = st.text_input('Password',
+            label_visibility='hidden',
+            placeholder='Please input password',
+            type = 'password')
+        if input1 and input2:
+            if st.button("Run"):
+                alert = st.empty()
+                service = Service()
+                options = webdriver.ChromeOptions()
+                browser = webdriver.Chrome(service=service, options=options)
+
+                alert.write('Trying to login....')
+                #open the LinkedIn login page and login under a specified account:
+                browser.get('https://www.linkedin.com/login')
+                #enter the specified information to login to LinkedIn:
+                elementID = browser.find_element(By.ID,'username')
+                elementID.send_keys(input1)
+                elementID = browser.find_element(By.ID,'password')
+                elementID.send_keys(input2)
+                elementID.submit()
+
+                time.sleep(5)
+                try:
+                    check = WebDriverWait(browser, 5).until(EC.element_to_be_clickable((By.XPATH, "//button[contains(@class, 'artdeco-button artdeco-button--muted artdeco-button--4 artdeco-button--tertiary ember-view share-box-feed-entry__trigger')]//*[contains(., 'Start a post')]")))
+                    alert.write('Login Sucess, preparing post')
+                except:
+                    alert.write('Username or password was wrong. Quiting...')
+                    time.sleep(2)
+                alert.write('Quit automation. Good bye')
+
 if __name__ == '__main__':
     main()
