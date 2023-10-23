@@ -335,41 +335,24 @@ def main():
             type = 'password')
         if input1 and input2:
             if st.button("Run"):
-                alert = st.empty()
-                
-                service = Service()
-                options = webdriver.ChromeOptions()
-                # options = Options()
-                options.add_argument("--headless")
-                options.add_argument("--no-sandbox")
-                options.add_argument("--disable-dev-shm-usage")
-                options.add_argument("--disable-gpu")
-                options.add_argument("--disable-features=NetworkService")
-                options.add_argument("--window-size=1920x1080")
-                options.add_argument("--disable-features=VizDisplayCompositor")
-                
-    
-                browser = webdriver.Chrome(service=service, options=options)
-                # browser = get_driver()
-
-                alert.write('Trying to login....')
-                #open the LinkedIn login page and login under a specified account:
-                browser.get('https://www.linkedin.com/login')
-                #enter the specified information to login to LinkedIn:
-                elementID = browser.find_element(By.ID,'username')
-                elementID.send_keys(input1)
-                elementID = browser.find_element(By.ID,'password')
-                elementID.send_keys(input2)
-                elementID.submit()
-
-                time.sleep(5)
-                try:
-                    check = WebDriverWait(browser, 5).until(EC.element_to_be_clickable((By.XPATH, "//button[contains(@class, 'artdeco-button artdeco-button--muted artdeco-button--4 artdeco-button--tertiary ember-view share-box-feed-entry__trigger')]//*[contains(., 'Start a post')]")))
-                    alert.write('Login Sucess, preparing post')
-                except:
-                    alert.write('Username or password was wrong. Quiting...')
-                    time.sleep(2)
-                alert.write('Quit automation. Good bye')
+                with st.echo():
+                from selenium import webdriver
+                from selenium.webdriver.chrome.options import Options
+                from selenium.webdriver.chrome.service import Service
+                from webdriver_manager.chrome import ChromeDriverManager
+            
+                @st.experimental_singleton
+                def get_driver():
+                    return webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
+            
+                options = Options()
+                options.add_argument('--disable-gpu')
+                options.add_argument('--headless')
+            
+                driver = get_driver()
+                driver.get("http://example.com")
+            
+                st.code(driver.page_source)
 
 if __name__ == '__main__':
     main()
