@@ -19,7 +19,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.keys import Keys
 from webdriver_manager.chrome import ChromeDriverManager
 # def get_driver():
-#     return webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
+#     return webdriver.Chrome(service=Service(), options=options)
 def download_file(sql_file):
     return st.download_button(
         label="DOWNLOAD!",
