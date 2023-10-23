@@ -337,7 +337,8 @@ def main():
                 alert = st.empty()
                 service = Service()
                 options = webdriver.ChromeOptions()
-                options.headless = True
+                options.add_argument('--disable-gpu')
+                options.add_argument('--headless')
                 browser = webdriver.Chrome(service=service, options=options)
 
                 alert.write('Trying to login....')
