@@ -19,11 +19,8 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.keys import Keys
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.chrome.service import Service
 
-@st.cache_resource
-# def get_driver():
-#     return webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
+
 def download_file(sql_file):
     return st.download_button(
         label="DOWNLOAD!",
@@ -341,17 +338,17 @@ def main():
             if st.button("Run"):
 
                     
-            
+                # @st.cache_resource
+                def get_driver():
+                    return webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
                 options = Options()
                 options.add_argument('--disable-gpu')
                 options.add_argument('--headless')
-                options.add_argument('--no-sandbox')
-                options.add_argument("window-size=1920,1080")
-                options.add_argument('--disable-dev-shm-usage')
-                options.add_argument('--headless')
-                options.add_argument("disable-infobars")
-                options.add_argument("--disable-extensions")
-                options.add_argument("--disable-dev-shm-usage")
+                # options.add_argument('--no-sandbox')
+                # options.add_argument("window-size=1920,1080")
+                # options.add_argument('--disable-dev-shm-usage')
+                # options.add_argument("disable-infobars")
+                # options.add_argument("--disable-extensions")
                 # options = Options()
                 # options.add_argument('--disable-gpu')
                 # options.add_argument('--headless')
@@ -362,21 +359,25 @@ def main():
                 st.write('Trying to login....')
                 #open the LinkedIn login page and login under a specified account:
                 browser.get('https://www.linkedin.com/login')
-                browser.set_window_size(1920, 1080)
+                st.code(browser.page_source)
+                # browser.set_window_size(1920, 1080)
                 #enter the specified information to login to LinkedIn:
                 elementID = browser.find_element(By.ID,'username')
+                time.sleep(2)
                 elementID.send_keys(input1)
                 elementID = browser.find_element(By.ID,'password')
+                time.sleep(2)
                 elementID.send_keys(input2)
                 elementID.submit()
                 st.write('Submitted password, please wait...')
+                # st.code(browser.page_source)
                 time.sleep(5)
                 try:
                     st.write('Fiding xPath...')
-                    check = WebDriverWait(browser, 15).until(EC.element_to_be_clickable((By.XPATH, "//button[contains(@class, 'artdeco-button artdeco-button--muted artdeco-button--4 artdeco-button--tertiary ember-view share-box-feed-entry__trigger')]//*[contains(., 'Start a post')]")))
-                    alert.write('Login Sucess, preparing post')
+                    check = WebDriverWait(browser, 15).until(EC.element_to_be_clickable((By.XPATH, "//div[contains(@class, 'form__label--error')]")))
+                    st.write('Wrong pass/username')
                 except:
-                    st.write('Username or password was wrong. Quiting...')
+                    st.write('Correct!')
                     time.sleep(2)
                 st.write('Quit automation. Good bye')
 
