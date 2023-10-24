@@ -373,8 +373,8 @@ def main():
                 # st.code(browser.page_source)
                 time.sleep(5)
                 try:
-                    st.write('Fiding xPath...')
-                    time.sleep(1)
+                    st.write('Finding xPath...')
+                    time.sleep(2)
                     check = browser.find_element(By.XPATH, "//*[contains(text(), 'Please enter a valid username')]")
                     st.write('Wrong pass/username')
                 except:
