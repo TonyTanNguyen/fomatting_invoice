@@ -338,7 +338,7 @@ def main():
             if st.button("Run"):
 
                     
-                @st.cache_resource
+                # @st.cache_resource
                 def get_driver():
                     return webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
                 options = Options()
@@ -352,7 +352,7 @@ def main():
                 # options = Options()
                 # options.add_argument('--disable-gpu')
                 # options.add_argument('--headless')
-                service = Service()
+                # service = Service()
                 browser = get_driver()
                 # browser = webdriver.Chrome(service=service, options=options)
                 
