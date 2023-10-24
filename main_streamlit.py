@@ -374,7 +374,8 @@ def main():
                 time.sleep(5)
                 try:
                     st.write('Fiding xPath...')
-                    check = WebDriverWait(browser, 15).until(EC.element_to_be_clickable((By.XPATH, "//div[contains(@class, 'form__label--error')]")))
+                    time.sleep(1)
+                    check = browser.find_element(By.XPATH, "//*[contains(text(), 'Please enter a valid username')]")
                     st.write('Wrong pass/username')
                 except:
                     st.write('Correct!')
