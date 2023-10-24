@@ -379,7 +379,7 @@ def main():
                 elif len(check_success)>0:
                     st.write('Correct!')
                 else:
-                    st.write('Something wierd happend.')
+                    st.write('Something wierd happened.')
                 st.write('Quit automation. Good bye')
 
 if __name__ == '__main__':
