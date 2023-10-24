@@ -346,7 +346,7 @@ def main():
         
                 opts = FirefoxOptions()
                 opts.add_argument("--headless")
-                browser = webdriver.Firefox(options=opts)
+                # browser = webdriver.Firefox(options=opts)
         
                 st.write('Trying to login....')
                 #open the LinkedIn login page and login under a specified account:
