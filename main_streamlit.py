@@ -339,8 +339,31 @@ def main():
         opts.add_argument("--headless")
         browser = webdriver.Firefox(options=opts)
 
-        browser.get('http://example.com')
-        st.write(browser.page_source)
+        st.write('Trying to login....')
+        #open the LinkedIn login page and login under a specified account:
+        browser.get('https://www.linkedin.com/login')
+        st.code(browser.page_source)
+        # browser.set_window_size(1920, 1080)
+        #enter the specified information to login to LinkedIn:
+        elementID = browser.find_element(By.ID,'username')
+        time.sleep(2)
+        elementID.send_keys(input1)
+        elementID = browser.find_element(By.ID,'password')
+        time.sleep(2)
+        elementID.send_keys(input2)
+        elementID.submit()
+        st.write('Submitted password, please wait...')
+        st.code(browser.page_source)
+        time.sleep(2)
+        check_fail = browser.find_elements(By.XPATH, "//*[contains(text(), 'Please enter a valid username')]")
+        check_success = browser.find_elements(By.XPATH, "//button[contains(@class, 'artdeco-button artdeco-button--muted artdeco-button--4 artdeco-button--tertiary ember-view share-box-feed-entry__trigger')]//*[contains(., 'Start a post')]")
+        if len(check_fail)>0:
+            st.write('Wrong pass/username')
+        elif len(check_success)>0:
+            st.write('Correct!')
+        else:
+            st.write('Something wierd happened.')
+        st.write('Quit automation. Good bye')
 
 
 
