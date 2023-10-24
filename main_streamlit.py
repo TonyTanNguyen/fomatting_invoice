@@ -338,9 +338,9 @@ def main():
             if st.button("Run"):
 
                     
-                # @st.cache_resource
-                # def get_driver():
-                #     return webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
+                @st.cache_resource
+                def get_driver():
+                    return webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
                 options = Options()
                 options.add_argument('--disable-gpu')
                 options.add_argument('--headless')
@@ -352,9 +352,9 @@ def main():
                 # options = Options()
                 # options.add_argument('--disable-gpu')
                 # options.add_argument('--headless')
-                service = Service()
-                # browser = get_driver()
-                browser = webdriver.Chrome(service=service, options=options)
+                # service = Service()
+                browser = get_driver()
+                # browser = webdriver.Chrome(service=service, options=options)
                  
                 st.write('Trying to login....')
                 #open the LinkedIn login page and login under a specified account:
