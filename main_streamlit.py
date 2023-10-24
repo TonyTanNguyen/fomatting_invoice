@@ -376,8 +376,10 @@ def main():
                 check_success = browser.find_elements(By.XPATH, "//button[contains(@class, 'artdeco-button artdeco-button--muted artdeco-button--4 artdeco-button--tertiary ember-view share-box-feed-entry__trigger')]//*[contains(., 'Start a post')]")
                 if len(check_fail)>0:
                     st.write('Wrong pass/username')
-                if len(check_success)>0:
+                elif len(check_success)>0:
                     st.write('Correct!')
+                else:
+                    st.write('Something wierd happend.')
                 st.write('Quit automation. Good bye')
 
 if __name__ == '__main__':
