@@ -371,7 +371,7 @@ def main():
                 elementID.submit()
                 st.write('Submitted password, please wait...')
                 st.code(browser.page_source)
-                time.sleep(5)
+                time.sleep(2)
                 check_fail = browser.find_elements(By.XPATH, "//*[contains(text(), 'Please enter a valid username')]")
                 check_success = browser.find_elements(By.XPATH, "//button[contains(@class, 'artdeco-button artdeco-button--muted artdeco-button--4 artdeco-button--tertiary ember-view share-box-feed-entry__trigger')]//*[contains(., 'Start a post')]")
                 if len(check_fail)>0:
