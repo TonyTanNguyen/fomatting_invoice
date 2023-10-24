@@ -345,7 +345,7 @@ def main():
                 _ = installff()
         
                 opts = FirefoxOptions()
-                # opts.add_argument("--headless")
+                opts.add_argument("--headless")
                 browser = webdriver.Firefox(options=opts)
         
                 st.write('Trying to login....')
