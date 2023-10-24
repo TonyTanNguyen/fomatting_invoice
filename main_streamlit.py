@@ -338,7 +338,7 @@ def main():
             if st.button("Run"):
 
                     
-                # @st.cache_resource
+                @st.cache_resource
                 def get_driver():
                     return webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
                 options = Options()
